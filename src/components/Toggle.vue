@@ -1,24 +1,29 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { currencyStore } from "../stores/currency.store";
 
 const options = {
-  USD: "USD",
-  EUR: "EUR",
+  USD: { name: "USD", symbol: "$" },
+  EUR: { name: "EUR", symbol: "€" },
 };
-const selectedCurrency = ref(options.EUR);
+const selectedCurrency = ref(currencyStore().getCurrencies[0]);
 const updateCurrency = () => {
-  if (selectedCurrency.value === options.EUR) {
+  if (selectedCurrency.value?.name === options.EUR.name) {
     selectedCurrency.value = options.USD;
   } else {
     selectedCurrency.value = options.EUR;
   }
+  console.log(selectedCurrency, "selected toggle?");
+  currencyStore().setSelectedCurrency(selectedCurrency.value!);
 };
 </script>
 <template>
   <div class="toggle">
     <span
-      :class="[selectedCurrency === options.EUR ? 'currency_active' : '']"
-      >{{ options.EUR }}</span
+      :class="[
+        selectedCurrency?.name === options.EUR.name ? 'currency_active' : '',
+      ]"
+      >{{ options.EUR.name }}</span
     >
     <div class="toggle_switch">
       <input class="toggle_input" id="toggle" type="checkbox" />
@@ -30,8 +35,10 @@ const updateCurrency = () => {
       ></label>
     </div>
     <span
-      :class="[selectedCurrency === options.USD ? 'currency_active' : '']"
-      >{{ options.USD }}</span
+      :class="[
+        selectedCurrency?.name === options.USD.name ? 'currency_active' : '',
+      ]"
+      >{{ options.USD.name }}</span
     >
   </div>
 </template>
