@@ -9,14 +9,14 @@ import Iconify from "./components/Iconify.vue";
 import { currencyStore } from "./stores/currency.store";
 import DisplayValues from "./components/DisplayValues.vue";
 import { currencyController } from "./controllers/currency.controller";
+import { watch } from "vue";
 
 const step = ref(1);
+const responsive = ref(window.innerWidth < 601);
 const updateGorjeta = (value: number) => {
-  // gorjeta.value = value;
   currencyStore().setGorjeta(value);
 };
 const updatePessoa = (value: number) => {
-  // pessoas.value = value;
   currencyStore().setPessoas(value);
 };
 const changeStep = () => {
@@ -26,8 +26,18 @@ const changeStep = () => {
     step.value = 1;
   }
 };
-
+watch(
+  () => responsive.value,
+  () => {
+    if (!responsive.value) {
+      step.value = 1;
+    }
+  }
+);
 onMounted(async () => {
+  window.addEventListener("resize", () => {
+    responsive.value = window.innerWidth < 601;
+  });
   if (!currencyStore().getConversions.length) {
     const valor = await currencyController.convertToReal(["EUR", "USD"]);
     for (const key in valor) {
@@ -37,15 +47,14 @@ onMounted(async () => {
       });
     }
   }
-  console.log(currencyStore().getConversions, "conversion store?");
 });
 </script>
 
 <template>
   <Header />
-  <main>
-    <template v-if="step === 1">
-      <Toggle />
+  <main :class="[!responsive ? 'desktop' : '']">
+    <section v-show="step === 1">
+      <Toggle v-show="step === 1" />
       <ValueInput />
       <InputRange
         symbol="%"
@@ -62,8 +71,8 @@ onMounted(async () => {
         label="Pessoas"
         :model-value="currencyStore().getPessoas"
       />
-    </template>
-    <template v-if="step === 2">
+    </section>
+    <template v-if="step === 2 || !responsive">
       <DisplayValues />
     </template>
     <button @click="changeStep" class="step">
@@ -79,9 +88,17 @@ onMounted(async () => {
 <style scoped>
 main {
   display: flex;
-  flex-direction: column;
-  gap: 32px;
   padding: 24px 0;
+  justify-content: center;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.desktop {
+  flex-direction: row;
+  justify-content: space-between;
 }
 .step {
   border-radius: 50%;

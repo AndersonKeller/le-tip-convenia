@@ -19,7 +19,9 @@ watch(
 </script>
 <template>
   <div class="content">
-    <label :for="label">{{ label }}: {{ rangeValue }}{{ symbol ?? "" }}</label>
+    <label :for="label"
+      >{{ label }}: <span>{{ rangeValue }}{{ symbol ?? "" }}</span></label
+    >
     <div class="content__infos">
       <span>{{ min }}</span>
       <input
@@ -40,13 +42,17 @@ watch(
   align-items: flex-start;
   gap: 16px;
 }
+.content label span {
+  font-size: 1.5rem;
+}
 .content__infos {
   width: 100%;
   display: flex;
-  gap: 12px;
+  gap: 4px;
   justify-content: space-between;
   align-items: center;
 }
+
 .content__infos input {
   -webkit-appearance: none; /* For WebKit browsers (Chrome, Safari) */
   -moz-appearance: none; /* For Mozilla Firefox */

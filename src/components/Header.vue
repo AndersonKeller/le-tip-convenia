@@ -6,6 +6,11 @@
 </template>
 <style scoped>
 header {
-  padding: 2rem 0;
+  padding-bottom: 3rem;
+}
+header h1 {
+  font-size: 4rem;
+  font-style: italic;
+  font-weight: 400;
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { ref } from "vue";
 import { currencyStore } from "../stores/currency.store";
 
 const options = {
@@ -13,24 +13,8 @@ const updateCurrency = () => {
   } else {
     selectedCurrency.value = options.EUR;
   }
-  console.log(selectedCurrency, "selected toggle?");
   currencyStore().setSelectedCurrency(selectedCurrency.value!);
 };
-// watch(
-//   () => currencyStore().getSelectedCurrency,
-//   () => {
-//     console.log("watch", currencyStore().getSelectedCurrency);
-//     // updateCurrency();
-//     selectedCurrency.value = currencyStore().getSelectedCurrency;
-//   }
-// );
-onMounted(() => {
-  console.log(
-    selectedCurrency.value.name,
-    "selected toggle?",
-    currencyStore().getSelectedCurrency.name
-  );
-});
 </script>
 <template>
   <div class="toggle">
@@ -69,22 +53,16 @@ onMounted(() => {
   color: var(--color-primary);
   text-decoration: underline;
 }
-
-/* From Uiverse.io by ClawHack1 */
-/* Genel stil */
 .toggle_switch {
   position: relative;
   display: inline-block;
   width: 48px;
   height: 24px;
 }
-
-/* Giriş stil */
 .toggle_switch .toggle_input {
   display: none;
 }
 
-/* Anahtarın stilinin etrafındaki etiketin stil */
 .toggle_switch .toggle_label {
   position: absolute;
   top: 0;
@@ -92,52 +70,24 @@ onMounted(() => {
   width: 48px;
   height: 24px;
   background-color: var(--color-primary);
-  /* border-radius: 34px; */
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-/* Anahtarın yuvarlak kısmının stil */
 .toggle_switch .toggle_label::before {
   content: "";
   position: absolute;
   width: 20px;
   height: 20px;
-  /* border-radius: 50%; */
   top: 2px;
   left: 2px;
-  background-color: #fff;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s;
+  background-color: var(--color-gray-300);
+  border-radius: 4px;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.63);
+  transition: transform 0.35s ease-in-out;
 }
 
 .toggle_switch .toggle_input:checked + .toggle_label::before {
   transform: translateX(24px);
-}
-
-/* Light tema */
-.toggle_switch.light .toggle_label {
-  background-color: #bebebe;
-}
-
-.toggle_switch.light .toggle_input:checked + .toggle_label {
-  background-color: #9b9b9b;
-}
-
-.toggle_switch.light .toggle_input:checked + .toggle_label::before {
-  transform: translateX(6px);
-}
-
-/* Dark tema */
-.toggle_switch.dark .toggle_label {
-  background-color: #4b4b4b;
-}
-
-.toggle_switch.dark .toggle_input:checked + .toggle_label {
-  background-color: #717171;
-}
-
-.toggle_switch.dark .toggle_input:checked + .toggle_label::before {
-  transform: translateX(16px);
 }
 </style>

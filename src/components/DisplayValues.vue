@@ -1,27 +1,29 @@
 <script setup lang="ts">
 import { utilController } from "../controllers/util.controller";
 import { currencyStore } from "../stores/currency.store";
-const selected = currencyStore().getSelectedCurrency;
 </script>
 <template>
   <section>
     <div class="info">
       <p>Conta</p>
       <h3>
-        <strong>{{ selected.symbol }}</strong>
+        <strong>{{ currencyStore().getSelectedCurrency.symbol }}</strong>
         {{
-          utilController.asMoney(currencyStore().getBaseValue, selected.name)
+          utilController.asMoney(
+            currencyStore().getBaseValue,
+            currencyStore().getSelectedCurrency.name
+          )
         }}
       </h3>
     </div>
     <div class="info">
       <p>Gorjeta</p>
       <h3>
-        <strong>{{ selected.symbol }}</strong>
+        <strong>{{ currencyStore().getSelectedCurrency.symbol }}</strong>
         {{
           utilController.asMoney(
             currencyStore().calculateGorjeta,
-            selected.name
+            currencyStore().getSelectedCurrency.name
           )
         }}
       </h3>
@@ -29,20 +31,23 @@ const selected = currencyStore().getSelectedCurrency;
     <div class="info">
       <p>Total</p>
       <h3>
-        <strong>{{ selected.symbol }}</strong>
+        <strong>{{ currencyStore().getSelectedCurrency.symbol }}</strong>
         {{
-          utilController.asMoney(currencyStore().getTotalValue, selected.name)
+          utilController.asMoney(
+            currencyStore().getTotalValue,
+            currencyStore().getSelectedCurrency.name
+          )
         }}
       </h3>
     </div>
     <div class="info">
       <p>por Pessoa</p>
       <h3>
-        <strong>{{ selected.symbol }}</strong>
+        <strong>{{ currencyStore().getSelectedCurrency.symbol }}</strong>
         {{
           utilController.asMoney(
             currencyStore().calculateValorPessoa,
-            selected.name
+            currencyStore().getSelectedCurrency.name
           )
         }}
       </h3>
@@ -57,9 +62,10 @@ const selected = currencyStore().getSelectedCurrency;
   </section>
 </template>
 <style scoped>
-section {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+section .info h3,
+section .info strong {
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 300;
 }
 </style>

@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { currencyStore } from "../stores/currency.store";
-const selected = ref(currencyStore().getSelectedCurrency);
+
 const moneyValue = ref(currencyStore().getBaseValue);
-const emit = defineEmits(["update"]);
-watch(
-  () => currencyStore().getSelectedCurrency,
-  () => {
-    console.log("watch", currencyStore().getSelectedCurrency);
-    selected.value = currencyStore().getSelectedCurrency;
-  }
-);
+
 watch(
   () => moneyValue.value,
   () => {
-    console.log(moneyValue.value, "aki?");
     currencyStore().setBaseValue(moneyValue.value);
   }
 );
@@ -23,9 +15,11 @@ watch(
   <div class="content">
     <label for="value">Valor</label>
     <div class="content__input">
-      <span class="content__symbol">{{ selected.symbol }}</span>
+      <span class="content__symbol">{{
+        currencyStore().getSelectedCurrency.symbol
+      }}</span>
       <input
-        v-model.number="moneyValue"
+        v-model="moneyValue"
         type="number"
         min="0.00"
         max="10000.00"
@@ -49,7 +43,10 @@ watch(
   width: 100%;
 }
 .content__symbol {
-  min-width: 14px;
+  min-width: 24px;
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 300;
 }
 .content__input input {
   height: 45px;
@@ -62,5 +59,11 @@ watch(
   text-align: right;
   padding-right: 8px;
   font-family: var(--font-family);
+  font-size: 1.5rem;
+}
+.content__input input::-webkit-outer-spin-button,
+.content__input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>
