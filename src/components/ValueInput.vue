@@ -22,7 +22,9 @@ watch(
         v-model="moneyValue"
         type="number"
         min="0.00"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
         max="10000.00"
+        :maxlength="8"
         step="0.01"
         id="value"
       />
