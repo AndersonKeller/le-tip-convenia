@@ -1,4 +1,5 @@
 import { serviceController } from "./service.controller";
+import { storageController } from "./storage.controller";
 
 const ENDPOINTS = {
   LAST: "/last",
@@ -13,10 +14,10 @@ export const currencyController = {
     );
     if (response) {
       //SETADO NO LOCAL STORAGE, QUANDO A API ESTOURAR RATE LIMIT, RETORNA O VALOR LOCAL
-      localStorage.setItem("converter", JSON.stringify(response));
+      storageController.setLocal("converter", response);
       return response;
     } else {
-      const local = localStorage.getItem("converter");
+      const local = storageController.getLocal("converter");
       return local ? JSON.parse(local) : local;
     }
   },
