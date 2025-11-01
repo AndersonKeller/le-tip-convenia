@@ -68,4 +68,9 @@ section .info strong {
   font-style: italic;
   font-weight: 300;
 }
+section .info h3 {
+  margin: 0 auto;
+  width: max-content;
+  text-align: center;
+}
 </style>
