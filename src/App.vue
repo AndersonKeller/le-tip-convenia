@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import Header from "./components/Header.vue";
 import InputRange from "./components/InputRange.vue";
 import Toggle from "./components/Toggle.vue";
@@ -9,7 +9,6 @@ import Iconify from "./components/Iconify.vue";
 import { currencyStore } from "./stores/currency.store";
 import DisplayValues from "./components/DisplayValues.vue";
 import { currencyController } from "./controllers/currency.controller";
-import { watch } from "vue";
 
 const step = ref(1);
 const responsive = ref(window.innerWidth < 601);
@@ -90,6 +89,7 @@ main {
   display: flex;
   padding: 24px 0;
   justify-content: center;
+  padding-top: 0;
 }
 section {
   display: flex;
@@ -115,6 +115,9 @@ section {
 @media (min-width: 600px) {
   .step {
     display: none;
+  }
+  main {
+    padding-top: 24px;
   }
 }
 </style>

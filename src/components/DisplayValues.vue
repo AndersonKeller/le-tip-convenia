@@ -3,7 +3,7 @@ import { utilController } from "../controllers/util.controller";
 import { currencyStore } from "../stores/currency.store";
 </script>
 <template>
-  <section>
+  <section class="value__section">
     <div class="info">
       <p>Conta</p>
       <h3>
@@ -72,5 +72,8 @@ section .info h3 {
   margin: 0 auto;
   width: max-content;
   text-align: center;
+}
+.value__section {
+  gap: 16px;
 }
 </style>
