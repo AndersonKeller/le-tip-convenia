@@ -6,10 +6,10 @@
 </template>
 <style scoped>
 header {
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 header h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-style: italic;
   font-weight: 400;
 }
