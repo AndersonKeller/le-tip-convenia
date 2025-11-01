@@ -36,4 +36,4 @@ Para conseguir usa-la, deve-se configurar a chave de api conforme exemplo do arq
     - ou para build
         npm run build
 
-Live preview aqui - [LE / TIP](https://vercel.com/andersonkellers-projects/le-tip-convenia)
+Live preview aqui - [LE / TIP](https://le-tip-convenia.vercel.app/)
