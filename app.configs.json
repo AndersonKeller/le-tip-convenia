@@ -1,0 +1,5 @@
+{
+  "endpoints": {
+    "api": "https://economia.awesomeapi.com.br/json"
+  }
+}

@@ -40,4 +40,35 @@ watch(
   align-items: flex-start;
   gap: 16px;
 }
+.content__infos {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+.content__infos input {
+  -webkit-appearance: none; /* For WebKit browsers (Chrome, Safari) */
+  -moz-appearance: none; /* For Mozilla Firefox */
+  appearance: none; /* Standard property */
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--color-gray-900); /* Track background color */
+  height: 2px; /* Track height */
+  border-radius: 4px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  background: var(--color-gray-900); /* Thumb color */
+  border-radius: 50%;
+  margin-top: -8px; /* Adjust to center thumb vertically */
+}
 </style>

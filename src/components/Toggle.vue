@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { currencyStore } from "../stores/currency.store";
 
 const options = {
   USD: { name: "USD", symbol: "$" },
   EUR: { name: "EUR", symbol: "€" },
 };
-const selectedCurrency = ref(currencyStore().getCurrencies[0]);
+const selectedCurrency = ref(currencyStore().getSelectedCurrency);
 const updateCurrency = () => {
   if (selectedCurrency.value?.name === options.EUR.name) {
     selectedCurrency.value = options.USD;
@@ -16,6 +16,21 @@ const updateCurrency = () => {
   console.log(selectedCurrency, "selected toggle?");
   currencyStore().setSelectedCurrency(selectedCurrency.value!);
 };
+// watch(
+//   () => currencyStore().getSelectedCurrency,
+//   () => {
+//     console.log("watch", currencyStore().getSelectedCurrency);
+//     // updateCurrency();
+//     selectedCurrency.value = currencyStore().getSelectedCurrency;
+//   }
+// );
+onMounted(() => {
+  console.log(
+    selectedCurrency.value.name,
+    "selected toggle?",
+    currencyStore().getSelectedCurrency.name
+  );
+});
 </script>
 <template>
   <div class="toggle">
