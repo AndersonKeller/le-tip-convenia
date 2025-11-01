@@ -1,5 +1,39 @@
-# Vue 3 + TypeScript + Vite
+# OBJETIVO
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+    Calculadora de gorjeta onde você insere o total da conta, o quanto quer dar de gorjeta e quantas pessoas vão dividir a conta. O total da conta pode ser em USD(Dólar) ou EUR(Euro). Deve ser exibido a conversão para BRL(R$),
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+# Tecnologias usadas
+
+    Vue 3 + TypeScript + Vite
+
+# Bibliotecas
+
+    Pinia - para gerenciamento de estados e compartilhar reativadade
+    Axios - para requisiçoes
+    Iconify - para icones
+
+Para busca de informações das cotações, foi usada a Api da [AWESOME](https://docs.awesomeapi.com.br/api-de-moedas)
+Para conseguir usa-la, deve-se configurar a chave de api conforme exemplo do arquivo .env_exemple
+
+## Para executar o projeto
+
+    requisitos:
+        Node.js version 20.19+ ou 22.12+
+
+    - clone o repositório
+    - instale as dependências
+        npm install
+        ou
+        yarn add
+
+    - rode o comando para dev
+        npm run dev
+        acessa o endereço local
+        por padrão o Vite roda na porta 5173
+            http://localhost:5173/
+        ou verifique no console o endereço que ele está rodando
+
+    - ou para build
+        npm run build
+
+Live preview aqui - [LE / TIP](https://vercel.com/andersonkellers-projects/le-tip-convenia)
