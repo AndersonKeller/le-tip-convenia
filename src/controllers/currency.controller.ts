@@ -19,6 +19,7 @@ export const currencyController = {
     } else {
       const local = storageController.getLocal("converter");
       //MOCK DE CONVERSÃO PARA QUANDO A API NÃO RESPONDE, COM CORS
+      console.log(local, "local?");
       const mock: any = {
         USDBRL: {
           code: "USD",
@@ -29,7 +30,7 @@ export const currencyController = {
           bid: "6.8195",
         },
       };
-      return local ? JSON.parse(local) : mock;
+      return local ? local : mock;
     }
   },
 };
