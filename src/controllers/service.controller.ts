@@ -3,7 +3,7 @@ import { endpoints } from "../../app.configs.json";
 const apikey = import.meta.env.VITE_API_KEY;
 
 export const serviceController = {
-  axios: a.create({ baseURL: endpoints.api }),
+  axios: a.create({ baseURL: endpoints.api, timeout: 3000 }),
   getHeaders() {
     const headers = {
       Authorization: "x-api-key: " + apikey,
@@ -22,7 +22,7 @@ export const serviceController = {
       }
     } catch (error) {
       console.log(error, "error");
-     
+
       return false;
     }
   },

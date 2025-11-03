@@ -49,7 +49,7 @@ export const currencyStore = defineStore("currencyStore", {
       );
       const realValue = this.getTotalValue * Number(findBid?.bid);
 
-      return realValue;
+      return realValue || 0;
     },
   },
   actions: {
